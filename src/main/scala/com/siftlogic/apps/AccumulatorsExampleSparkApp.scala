@@ -2,10 +2,7 @@ package com.siftlogic.apps
 
 import org.apache.spark.sql.SparkSession
 
-/**
-  * Created by przemekpioro on 22/10/17.
-  */
-object AccumulatorsExampleSparkJob {
+object AccumulatorsExampleSparkApp {
 
   def main(args: Array[String]): Unit = {
     implicit val sparkSession = SparkSession.builder().appName("Accumulators Example").master("local[*]").getOrCreate()
