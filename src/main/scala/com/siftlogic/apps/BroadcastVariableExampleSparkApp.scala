@@ -7,7 +7,7 @@ object BroadcastVariableExampleSparkApp {
 
 
   def main(args: Array[String]): Unit = {
-    implicit val sparkSession = SparkSession.builder().appName("Word Count").master("local").getOrCreate()
+    implicit val sparkSession = SparkSession.builder().appName("Broadcast Example").master("local").getOrCreate()
     import sparkSession.implicits._
 
     val broadcastedWordsWeights = sparkSession.sparkContext.broadcast(Map("spark" -> 2.0,"apache" -> 1.5))

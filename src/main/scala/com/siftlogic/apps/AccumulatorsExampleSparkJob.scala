@@ -8,7 +8,7 @@ import org.apache.spark.sql.SparkSession
 object AccumulatorsExampleSparkJob {
 
   def main(args: Array[String]): Unit = {
-    implicit val sparkSession = SparkSession.builder().appName("Word Count").master("local[*]").getOrCreate()
+    implicit val sparkSession = SparkSession.builder().appName("Accumulators Example").master("local[*]").getOrCreate()
     import sparkSession.implicits._
 
     val input = sparkSession.createDataset(Seq("spark", "apache spark", "spark", "word", "count"))
