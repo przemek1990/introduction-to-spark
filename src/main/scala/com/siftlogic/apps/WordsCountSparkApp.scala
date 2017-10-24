@@ -18,12 +18,8 @@ object WordsCountSparkApp {
       .groupByKey(value => value) // TRANSFORMATION WIDE
       .count() //TRANSFORMATION NARROW
 
-/*    output.show()
+    output.show()
 
-    output
-      .write
-      .mode(SaveMode.Append)
-      .jdbc(url = "URL_TO_DATABSE", table = "TABLE_NAME", connectionProperties = null  )*/
 
   }
 
