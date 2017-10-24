@@ -18,7 +18,7 @@ object LazyEvaluationExampleSparkApp {
       .groupByKey(value => value) // TRANSFORMATION WIDE
       .count() //TRANSFORMATION NARROW
 
-    // output.show()
+    output.show()
 
 
   }
