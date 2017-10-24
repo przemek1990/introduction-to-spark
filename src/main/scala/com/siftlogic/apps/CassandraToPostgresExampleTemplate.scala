@@ -1,7 +1,7 @@
 package com.siftlogic.apps
 
 import com.siftlogic.aggregations.RawLogsAggregator
-import com.siftlogic.model.{RawLog, RawLogOutputAggregation}
+import com.siftlogic.model.RawLog
 import org.apache.spark.sql.{Encoder, SparkSession}
 
 
@@ -14,8 +14,8 @@ object CassandraToPostgresExampleTemplate {
       .master("local[*]")
       .getOrCreate()
 
-    import sparkSession.implicits._
     import org.apache.spark.sql.cassandra._
+    import sparkSession.implicits._
 
     //Input
     val rawLogs = sparkSession
@@ -24,7 +24,7 @@ object CassandraToPostgresExampleTemplate {
       .load()
       .as[RawLog](implicitly[Encoder[RawLog]])
 
-    //Aggregation // This part should be extracted to new object for testing
+    //Aggregation
     val output = RawLogsAggregator.aggregate(rawLogs)
 
     //Save to Postgres
