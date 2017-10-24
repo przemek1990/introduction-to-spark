@@ -1,11 +1,9 @@
 package com.siftlogic.apps
 
+import com.siftlogic.aggregations.RawLogsAggregator
+import com.siftlogic.model.{RawLog, RawLogOutputAggregation}
 import org.apache.spark.sql.{Encoder, SparkSession}
 
-// add more field here. Fields should have the same name as cassandra columns
-case class RawLog(id: String)
-// add more field here. Fields should have the same name as postgres output table
-case class OutputAggregation(id: String)
 
 object CassandraToPostgresExampleTemplate {
 
@@ -27,11 +25,10 @@ object CassandraToPostgresExampleTemplate {
       .as[RawLog](implicitly[Encoder[RawLog]])
 
     //Aggregation // This part should be extracted to new object for testing
-    val aggregation = rawLogs
-      .map(log => OutputAggregation(id = log.id))
+    val output = RawLogsAggregator.aggregate(rawLogs)
 
     //Save to Postgres
-    aggregation
+    output
       .write
       .option("driver", "org.postgresql.Driver")
       .jdbc(url = "URL", table = "TABLE", connectionProperties = null) //connectionProperties add user and password

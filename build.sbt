@@ -7,7 +7,8 @@ lazy val commonSettings = Seq(
   libraryDependencies ++= Seq(
     "org.apache.spark" %% "spark-core" % "2.2.0",
     "org.apache.spark" %% "spark-sql" % "2.2.0",
-    "com.datastax.spark" %% "spark-cassandra-connector" % "2.0.3"
+    "com.datastax.spark" %% "spark-cassandra-connector" % "2.0.3",
+    "org.scalatest" %% "scalatest" % "2.2.6" % Test
   ),
   assemblyJarName in assembly := "introduction-to-spark.jar",
   assemblyMergeStrategy in assembly := {
